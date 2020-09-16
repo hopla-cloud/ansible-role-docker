@@ -28,7 +28,6 @@
       - docker-ce-cli
       - containerd.io
 
-      - name: Ensure docker-compose is installed
-        apt:
-          name:
-            - docker-compose
+- name: Ensure docker-compose is installed
+  apt:
+    name: docker-compose
