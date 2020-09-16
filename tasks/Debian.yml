@@ -18,7 +18,7 @@
     repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
     state: present
     update_cache: yes
-    when: "focal' in ansible_distribution_release"
+    when: "'focal' in ansible_distribution_release"
 
 - name: Install latest version of docker
   apt:
