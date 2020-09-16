@@ -31,3 +31,16 @@
 - name: Ensure docker-compose is installed
   apt:
     name: docker-compose
+
+- name: Start  docker
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: Ensure docker is running
+  docker_ping:
+  register: result
+  retries: 5
+  delay: 10
+  until: result.ping == 'pong'
