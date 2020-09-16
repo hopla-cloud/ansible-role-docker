@@ -1,0 +1,28 @@
+---
+# tasks file for hoplacloud.docker
+
+- name: Install latest version of dependencies
+  apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - gnupg-agent
+      - software-properties-common
+
+- name: Add an apt key by id from a keyserver
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+
+- name: Add Repository focal
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
+    state: present
+    update_cache: yes
+    when: "focal' in ansible_distribution_release"
+
+- name: Install latest version of docker
+  apt:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
