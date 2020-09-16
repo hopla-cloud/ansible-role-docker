@@ -21,9 +21,14 @@
     update_cache: yes
   when: "'focal' in ansible_distribution_release"
 
-- name: Install latest version of docker
+- name: Ensure docker is installed
   apt:
     name:
       - docker-ce
       - docker-ce-cli
       - containerd.io
+
+      - name: Ensure docker-compose is installed
+        apt:
+          name:
+            - docker-compose
